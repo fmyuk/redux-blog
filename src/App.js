@@ -2,8 +2,20 @@ import { Route, Switch } from 'react-router-dom';
 import Admin from "./admin";
 import { ToastContainer } from "react-toastify";
 import './App.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchPosts } from './redux/actionCreators/postActionCreators';
 
 export const App = () => {
+  const isLoading = useSelector(state => state.post.isLoading);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isLoading) {
+      dispatch(fetchPosts);
+    }
+  }, [isLoading, dispatch]);
+  
   return (
     <div className="App">
       <ToastContainer />

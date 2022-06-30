@@ -5,6 +5,8 @@ import { auth } from "../../config/firebase";
 import { Link, Route, Switch, useHistory, useRouteMatch } from "react-router-dom";
 import Register from "../auth/register/Register";
 import NavbarComponent from "./navbar/NavbarComponent";
+import AddPost from "./addpost/AddPost";
+import AllPosts from "./allposts/AllPosts";
 
 const Dashboard = () => {
   const { path } = useRouteMatch();
@@ -27,8 +29,8 @@ const Dashboard = () => {
           </button>
           <Link to="/admin/dashboard/addUser">Add User</Link>
         </Route>
-        <Route path={`${path}/addPost`} component={() => <h1>Add Post</h1>} />
-        <Route path={`${path}/posts`} component={() => <h1>All Post</h1>} />
+        <Route path={`${path}/addPost`} component={() => <AddPost />} />
+        <Route path={`${path}/posts`} component={() => <AllPosts />} />
         <Route path={`${path}/addUser`} component={() => <Register />} />
       </Switch>
     </>
