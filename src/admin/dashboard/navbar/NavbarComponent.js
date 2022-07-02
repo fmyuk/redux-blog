@@ -9,6 +9,7 @@ const NavbarComponent = () => {
     isLoggedIn: state.auth.isLoggedIn,
     user: state.auth.user
   }), shallowEqual);
+  
   return (
     <Navbar bg="dark" variant={"dark"}>
       <Navbar.Brand

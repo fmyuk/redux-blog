@@ -5,6 +5,7 @@ import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchPosts } from './redux/actionCreators/postActionCreators';
+import SeePost from './components/seepost/SeePost';
 
 export const App = () => {
   const isLoading = useSelector(state => state.post.isLoading);
@@ -12,7 +13,7 @@ export const App = () => {
 
   useEffect(() => {
     if (isLoading) {
-      dispatch(fetchPosts);
+      dispatch(fetchPosts());
     }
   }, [isLoading, dispatch]);
   
@@ -23,6 +24,7 @@ export const App = () => {
         <Route exact path="/">
           <h1>Hello</h1>
         </Route>
+        <Route path="/post/:postId" component={() => <SeePost />} />
         <Route path="/admin" component={() => <Admin />} />
       </Switch>
     </div>
