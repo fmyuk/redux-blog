@@ -17,8 +17,9 @@ const getPosts = (data) => ({
   payload: data
 });
 
-const resetPosts = (data) => ({
-  type: types.RESET_POSTS
+const addComment = (data) => ({
+  type: types.ADD_COMMENT,
+  payload: data
 });
 
 export const doPost = (data, image, setProgress) => dispatch => {
@@ -70,3 +71,15 @@ export const fetchPosts = () => dispatch => {
     toast.error(err);
   });
 };
+
+export const doComment = (comment, postId, prevComments) => dispatch => {
+  const oldComments = prevComments;
+  oldComments.push(comment);
+
+  firestore.collection("posts").doc(postId).update({
+    comments: oldComments
+  }).then(() => {
+    dispatch(addComment({ comment, postId }));
+    toast.success("Comment added Successfully!");
+  }).catch(err => console.log(err));
+}
