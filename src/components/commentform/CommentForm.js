@@ -34,6 +34,7 @@ const CommentForm = ({ currentPost }) => {
       };
 
       dispatch(doComment(data, currentPost.postId, currentPost.postData.comments));
+      setComment("");
     } else {
       if (!comment || !name || !email) {
         return toast.dark("Please fill in all fields!");
@@ -50,6 +51,9 @@ const CommentForm = ({ currentPost }) => {
       };
 
       dispatch(doComment(data, currentPost.postId, currentPost.postData.comments));
+      setComment("");
+      setName("");
+      setEmail("");
     }
   };
   

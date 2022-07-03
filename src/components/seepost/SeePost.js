@@ -96,7 +96,12 @@ const SeePost = () => {
                   </div>
                 </div>
                 <p className="mt-4 text-left">{comment.comment}</p>
-                <ReplyForm comment={comment} />
+                <p className="mt-4 text-left">{comment.replies.length} reply(s)</p>
+                <ReplyForm
+                  comment={comment}
+                  currentPost={currentPost}
+                  index={index}
+                />
               </div>
             ))}
           </div>

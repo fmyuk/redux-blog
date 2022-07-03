@@ -22,6 +22,11 @@ const addComment = (data) => ({
   payload: data
 });
 
+const addReply = (data) => ({
+  type: types.ADD_REPLY,
+  payload: data
+});
+
 export const doPost = (data, image, setProgress) => dispatch => {
   firestore.collection("posts").add(data).then(async res => {
     const document = await res.get();
@@ -81,5 +86,18 @@ export const doComment = (comment, postId, prevComments) => dispatch => {
   }).then(() => {
     dispatch(addComment({ comment, postId }));
     toast.success("Comment added Successfully!");
+  }).catch(err => console.log(err));
+};
+
+export const doReply = (reply, postId, prevComments, index) => dispatch => {
+  const oldComments = prevComments;
+  const replies = oldComments[index].replies;
+  replies.push(reply);
+  oldComments[index].replies = replies;
+  firestore.collection("posts").doc(postId).update({
+    comments: oldComments
+  }).then(() => {
+    dispatch(addReply({ oldComments, postId }));
+    toast.success("Reply added Successfully!");
   }).catch(err => console.log(err));
 }
