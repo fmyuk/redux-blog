@@ -22,6 +22,11 @@ const addComment = (data) => ({
   payload: data
 });
 
+const deleteComment = (data) => ({
+  type: types.DELETE_COMMENT,
+  payload: data
+});
+
 const addReply = (data) => ({
   type: types.ADD_REPLY,
   payload: data
@@ -86,6 +91,17 @@ export const doComment = (comment, postId, prevComments) => dispatch => {
   }).then(() => {
     dispatch(addComment({ comment, postId }));
     toast.success("Comment added Successfully!");
+  }).catch(err => console.log(err));
+};
+
+export const removeComment = (index, postId, prevComments) => dispatch => {
+  const filteredComments = prevComments.filter((cmt, id) => id !== index);
+
+  firestore.collection("posts").doc(postId).update({
+    comments: filteredComments
+  }).then(() => {
+    dispatch(deleteComment({ comment: filteredComments, postId }));
+    toast.success("Comment delete Successfully!");
   }).catch(err => console.log(err));
 };
 

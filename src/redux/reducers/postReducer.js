@@ -38,6 +38,14 @@ const postReducer = (state = initialState, action) => {
         ...state,
         posts: state.posts.map(pt => pt.postId === action.payload.postId ? findPost : pt)
       };
+    case types.DELETE_COMMENT:
+      const currentPost = state.posts.find(pst => pst.postId === action.payload.postId);
+      const filteredComments = currentPost.postData.comments.filter((cmt, index) => index !== action.payload.index);
+      currentPost.postData.comments = filteredComments;
+      return {
+        ...state,
+        posts: state.posts.map(pt => pt.postId === action.payload.postId ? currentPost : pt)
+      };
     case types.ADD_REPLY:
       const oldPost = state.posts.find(pst => pst.postId === action.payload.postId);
       oldPost.postData.comments = action.payload.oldComments;

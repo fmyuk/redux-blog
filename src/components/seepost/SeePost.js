@@ -1,17 +1,23 @@
 import React from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
-import { shallowEqual, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { removeComment } from "../../redux/actionCreators/postActionCreators";
 import CommentForm from "../commentform/CommentForm";
 import ReplyForm from "../replyform/ReplyForm";
+import ShowReplies from "../showreplies/ShowReplies";
 
 const SeePost = () => {
   const { postId } = useParams();
   
-  const { isLoading, posts } = useSelector((state) => ({
+  const { isLoading, posts, isLoggedIn, user_id } = useSelector((state) => ({
     isLoading: state.post.isLoading,
-    posts: state.post.posts
+    posts: state.post.posts,
+    isLoggedIn: state.auth.isLoggedIn,
+    user_id: state.auth.user_id
   }), shallowEqual);
+
+  const dispatch = useDispatch();
 
   const currentPost = posts.length > 0 &&
     posts.find((pst) => pst.postId === postId);
@@ -96,12 +102,20 @@ const SeePost = () => {
                   </div>
                 </div>
                 <p className="mt-4 text-left">{comment.comment}</p>
-                <p className="mt-4 text-left">{comment.replies.length} reply(s)</p>
+                <ShowReplies allReplies={comment.replies} />
                 <ReplyForm
                   comment={comment}
                   currentPost={currentPost}
                   index={index}
                 />
+                {isLoggedIn && currentPost.postData.createdBy === user_id && (
+                  <button
+                    className="btn text-danger my-2 text-right"
+                    onClick={() => dispatch(removeComment(index, currentPost.postId, currentPost.postData.comments))}
+                  >
+                    Delete Comment
+                  </button>
+                )}
               </div>
             ))}
           </div>
