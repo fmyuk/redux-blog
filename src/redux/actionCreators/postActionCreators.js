@@ -32,6 +32,11 @@ const addReply = (data) => ({
   payload: data
 });
 
+const updatePost = (data) => ({
+  type: types.UPDATE_POST,
+  payload: data
+});
+
 export const doPost = (data, image, setProgress) => dispatch => {
   firestore.collection("posts").add(data).then(async res => {
     const document = await res.get();
@@ -80,6 +85,21 @@ export const fetchPosts = () => dispatch => {
     console.log(err);
     toast.error(err);
   });
+};
+
+export const updatePostData = (postId, prevPost, data) => dispatch => {
+  const { title, description } = data;
+
+  prevPost.postData.title = title;
+  prevPost.postData.description = description;
+
+  firestore.collection("posts").doc(postId).update({
+    title,
+    description
+  }).then(() => {
+    dispatch(updatePost({ postId, updatedPost: prevPost }));
+    toast.success("Successfully Updated the post!");
+  }).catch((err) => console.log(err));
 };
 
 export const doComment = (comment, postId, prevComments) => dispatch => {

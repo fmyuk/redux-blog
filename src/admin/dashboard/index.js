@@ -7,6 +7,7 @@ import Register from "../auth/register/Register";
 import NavbarComponent from "./navbar/NavbarComponent";
 import AddPost from "./addpost/AddPost";
 import AllPosts from "./allposts/AllPosts";
+import EditPost from "./editpost/EditPost";
 
 const Dashboard = () => {
   const { path } = useRouteMatch();
@@ -32,6 +33,7 @@ const Dashboard = () => {
         <Route path={`${path}/addPost`} component={() => <AddPost />} />
         <Route path={`${path}/posts`} component={() => <AllPosts />} />
         <Route path={`${path}/addUser`} component={() => <Register />} />
+        <Route path={`${path}/post/:postId/edit`} component={() => <EditPost />} />
       </Switch>
     </>
   );

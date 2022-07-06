@@ -29,6 +29,18 @@ const postReducer = (state = initialState, action) => {
       };
     case types.RESET_POSTS:
       return initialState;
+    case types.UPDATE_POST:
+      const current = state.posts.find(
+        (pst) => pst.postId === action.payload.postId
+      );
+      current.postData.title = action.payload.updatedPost.title;
+      current.postData.description = action.payload.description;
+      return {
+        ...state,
+        posts: state.posts.map((pst) =>
+          pst.postId === action.payload.postId ? current : pst
+        ),
+      };
     case types.ADD_COMMENT:
       const findPost = state.posts.find(pst => pst.postId === action.payload.postId);
       const comments = findPost.postData.comments;

@@ -64,6 +64,7 @@ const AllPosts = () => {
                       variant="outline-primary"
                       bg="primary"
                       className="mx-2"
+                      onClick={() => history.push(`/admin/dashboard/post/${pst.postId}/edit`)}
                     >
                       Edit Post
                     </Button>
