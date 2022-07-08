@@ -26,7 +26,7 @@ const Posts = () => {
           <h1 className="my-5 text-center">Loading...</h1>
         ) : (
           posts.map((pst, index) => (
-            <Col md={6} key={index}>
+            <Col md={12} key={index}>
               <PostCard pst={pst} index={index} />
             </Col>
           ))

@@ -8,11 +8,11 @@ const NavbarComponent = () => {
       <Navbar.Brand
         as={Link}
         to=""
-        style={{ marginLeft: "10%" }}
+        style={{ marginLeft: "5%" }}
       >
         React + Redux Firebase Blog
       </Navbar.Brand>
-      <Nav className="ms-auto">
+      <Nav className="ms-auto ml-5">
         <Nav.Item>
           <Nav.Link as={NavLink} to="/">
             Home
