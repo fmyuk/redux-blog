@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Button, Card, Container, Row } from "react-bootstrap";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { fetchPosts } from "../../../redux/actionCreators/postActionCreators";
+import { fetchPosts, removePost } from "../../../redux/actionCreators/postActionCreators";
 
 const AllPosts = () => {
   const { isLoading, posts, userId } = useSelector((state) => ({
@@ -73,6 +73,7 @@ const AllPosts = () => {
                       variant="danger"
                       bg="danger"
                       className="mx-2"
+                      onClick={() => dispatch(removePost(pst.postId, pst.postData.image))}
                     >
                       Delete Post
                     </Button>

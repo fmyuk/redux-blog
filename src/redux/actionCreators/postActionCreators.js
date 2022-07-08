@@ -17,6 +17,16 @@ const getPosts = (data) => ({
   payload: data
 });
 
+const updatePost = (data) => ({
+  type: types.UPDATE_POST,
+  payload: data
+});
+
+const deletePost = (data) => ({
+  type: types.DELETE_POST,
+  payload: data
+});
+
 const addComment = (data) => ({
   type: types.ADD_COMMENT,
   payload: data
@@ -29,11 +39,6 @@ const deleteComment = (data) => ({
 
 const addReply = (data) => ({
   type: types.ADD_REPLY,
-  payload: data
-});
-
-const updatePost = (data) => ({
-  type: types.UPDATE_POST,
   payload: data
 });
 
@@ -102,6 +107,19 @@ export const updatePostData = (postId, prevPost, data) => dispatch => {
   }).catch((err) => console.log(err));
 };
 
+export const removePost = (postId, imageUrl) => dispatch => {
+  storage.refFromURL(imageUrl).delete().then(() => {
+    firestore.collection("posts").doc(postId).delete().then(() => {
+      dispatch(deletePost({ postId }));
+      toast.success("Successfully Deleted the post!");
+    }).catch(err => {
+      console.log(err);
+    });
+  }).catch(err => {
+    console.log(err);
+  });
+};
+
 export const doComment = (comment, postId, prevComments) => dispatch => {
   const oldComments = prevComments;
   oldComments.push(comment);
@@ -136,4 +154,4 @@ export const doReply = (reply, postId, prevComments, index) => dispatch => {
     dispatch(addReply({ oldComments, postId }));
     toast.success("Reply added Successfully!");
   }).catch(err => console.log(err));
-}
+};

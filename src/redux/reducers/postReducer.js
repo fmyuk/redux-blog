@@ -33,13 +33,23 @@ const postReducer = (state = initialState, action) => {
       const current = state.posts.find(
         (pst) => pst.postId === action.payload.postId
       );
-      current.postData.title = action.payload.updatedPost.title;
-      current.postData.description = action.payload.description;
       return {
         ...state,
         posts: state.posts.map((pst) =>
-          pst.postId === action.payload.postId ? current : pst
+          pst.postId === action.payload.postId
+            ? {
+              ...current,
+              title: action.payload.updatedPost.title,
+              description: action.payload.updatedPost.description
+            }
+            : pst
         ),
+      };
+    case types.DELETE_POST:
+      const filteredPosts = state.posts.filter((pst) => pst.postId !== action.payload.postId);
+      return {
+        ...state,
+        posts: filteredPosts
       };
     case types.ADD_COMMENT:
       const findPost = state.posts.find(pst => pst.postId === action.payload.postId);
