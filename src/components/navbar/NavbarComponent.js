@@ -7,7 +7,7 @@ const NavbarComponent = () => {
     <Navbar bg="dark" variant={"dark"} className="shadow-lg">
       <Navbar.Brand
         as={Link}
-        to="/admin/dashboard"
+        to=""
         style={{ marginLeft: "10%" }}
       >
         React + Redux Firebase Blog

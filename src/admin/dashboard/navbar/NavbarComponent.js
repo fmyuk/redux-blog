@@ -3,7 +3,7 @@ import { Button, Nav, Navbar } from "react-bootstrap";
 import { shallowEqual, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 
-const NavbarComponent = () => {
+const NavbarComponent = ({ logout }) => {
 
   const { isLoggedIn, user } = useSelector(state => ({
     isLoggedIn: state.auth.isLoggedIn,
@@ -47,7 +47,13 @@ const NavbarComponent = () => {
               <span style={{ fontWeight: "bold" }}>{user.displayName}</span>
             </p>
             &nbsp;&nbsp;
-            <Button type="button" variant="success" size="sm" bg="success">
+            <Button
+              type="button"
+              variant="success"
+              onClick={() => logout()}
+              size="sm"
+              bg="success"
+            >
               Logout
             </Button>
           </>

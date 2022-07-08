@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { shallowEqual, useSelector } from "react-redux";
 import PostCard from "../postcard/PostCard";
 
-const Home = () => {
+const Posts = () => {
 
   const { postLoading, posts } = useSelector((state) => ({
     postLoading: state.post.isLoading,
@@ -12,26 +12,28 @@ const Home = () => {
 
   return (
     <Container>
-      <Row className="gap-2">
-        <Col md={6} className="mt-5 mb-4 boarder-bottom">
-          <Col md={4}>
+      <Row>
+        <Col md={12} className="mt-5 mb-4">
+          <Col md={12}>
             <p className="py-3 text-center px-3 bg-dark text-white">
-              Latest Posts
+              All Posts
             </p>
           </Col>
         </Col>
       </Row>
-      <Col md={6} className="mt-2 mb-5">
+      <Row className="mt-2 mb-5">
         {postLoading ? (
           <h1 className="my-5 text-center">Loading...</h1>
         ) : (
-          posts.slice(0, 5).map((pst, index) => (
-            <PostCard pst={pst} index={index} key={index} />
+          posts.map((pst, index) => (
+            <Col md={6} key={index}>
+              <PostCard pst={pst} index={index} />
+            </Col>
           ))
         )}
-      </Col>
+      </Row>
     </Container>
   );
 };
 
-export default Home;
+export default Posts;

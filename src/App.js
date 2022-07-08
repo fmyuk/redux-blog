@@ -10,6 +10,7 @@ import NavbarComponent from './components/navbar/NavbarComponent';
 import SubNavbar from './components/subnavbar/SubNavbar';
 import { loginUser } from './redux/actionCreators/authActionCreators';
 import { auth } from './config/firebase';
+import Posts from './components/posts/Posts';
 import './App.css';
 
 export const App = () => {
@@ -44,6 +45,11 @@ export const App = () => {
           {isLoggedIn && <SubNavbar />}
           <NavbarComponent />
           <Home />
+        </Route>
+        <Route path="/posts">
+          {isLoggedIn && <SubNavbar />}
+          <NavbarComponent />
+          <Posts />
         </Route>
         <Route path="/post/:postId" component={() => <SeePost />} />
         <Route path="/admin" component={() => <Admin />} />

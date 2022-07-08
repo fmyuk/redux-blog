@@ -2,17 +2,17 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../redux/actionCreators/authActionCreators";
 import { auth } from "../../config/firebase";
-import { Link, Route, Switch, useHistory, useRouteMatch } from "react-router-dom";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
 import Register from "../auth/register/Register";
 import NavbarComponent from "./navbar/NavbarComponent";
 import AddPost from "./addpost/AddPost";
 import AllPosts from "./allposts/AllPosts";
 import EditPost from "./editpost/EditPost";
+import Home from "./home/Home";
 
 const Dashboard = () => {
-  const { path } = useRouteMatch();
-  const history = useHistory();
   const dispatch = useDispatch();
+  const { path } = useRouteMatch();
 
   const logout = () => {
     auth.signOut();
@@ -21,15 +21,9 @@ const Dashboard = () => {
 
   return (
     <>
-      {!path.includes("addUser") && <NavbarComponent />}
+      {!path.includes("addUser") && <NavbarComponent logout={logout} />}
       <Switch>
-        <Route exact path={path}>
-          <h1>Dashboard</h1>
-          <button type="button" onClick={logout}>
-            Logout
-          </button>
-          <Link to="/admin/dashboard/addUser">Add User</Link>
-        </Route>
+        <Route exact path={path} component={() => <Home />} />
         <Route path={`${path}/addPost`} component={() => <AddPost />} />
         <Route path={`${path}/posts`} component={() => <AllPosts />} />
         <Route path={`${path}/addUser`} component={() => <Register />} />
