@@ -46,21 +46,21 @@ const SeePost = () => {
   }
 
   return (
-    <Container fluid className="px-0" style={{ overflowX: "hidden" }}>
+    <Container className="px-0 mt-2" style={{ overflowX: "hidden" }}>
       <Row>
         <Col md={12}>
           <Image
-            style={{ height: "650", width: "10%" }}
+            style={{ height: "650", width: "20%" }}
             src={currentPost.postData.image}
             alt={currentPost.postData.title}
           />
         </Col>
       </Row>
       <Row className="align-items-center justify-content-between">
-        <Col md={6} className="py-5 px-5">
+        <Col md={12} className="py-5 px-5">
           <p className="display-3">{currentPost.postData.title}</p>
         </Col>
-        <Col md={5} className="d-flex gap-1 align-items-center justify-content-end pr-5">
+        <Col md={12} className="d-flex gap-1 align-items-center justify-content-end pr-5">
           {currentPost.postData.category.map((cat, index) => (
             <p className="py-1 bg-primary text-white px-2 mr-3" key={index + 55}>
               {cat}
@@ -70,11 +70,11 @@ const SeePost = () => {
       </Row>
       <div className="d-flex">
         <div
-          className="card-text text-wrap overflow-hidden px-5 py-0 w-50 text-justify"
+          className="card-text text-wrap overflow-hidden ml-5 px-5 py-0 w-100 text-justify"
         >
           <MarkdownView description={currentPost.postData.description} />
         </div>
-        <div className="col-md-6">
+        <div className="col-md-4">
           <CommentForm currentPost={currentPost} />
           <div className="col-md-12 pe-5 mt-5">
             {currentPost.postData.comments.map((comment, index) => (

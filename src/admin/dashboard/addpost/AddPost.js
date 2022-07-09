@@ -96,7 +96,7 @@ const AddPost = () => {
                     onChange={(e) => setCategory(e.target.value)}
                   />
                 </Form.Group>
-                <Form.Group controlId="desc" className="my-2">
+                <Form.Group controlId="desc" className="my-2 text-left">
                   <MarkdownEditor description={description} setDescription={setDescription} />
                 </Form.Group>
                 <Form.Group controlId="file" className="my-2">
@@ -118,7 +118,7 @@ const AddPost = () => {
               </Form>
           }
         </Col>
-        <Col md={6} className="shallow">
+        <Col md={6} className="shallow mt-5 text-left">
           <MarkdownView description={description} />
         </Col>
       </Row>

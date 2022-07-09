@@ -50,13 +50,15 @@ const EditPost = () => {
               className="mt-5 mb-3"
               onChange={(e) => setTitle(e.target.value)}
             />
-            <MarkdownEditor description={description} setDescription={setDescription} />
+            <Form.Group controlId="desc" className="my-2 text-left">
+              <MarkdownEditor description={description} setDescription={setDescription} />
+            </Form.Group>
             <Button type="submit" className="mt-4 form-control" variant="dark">
               Update Post
             </Button>
           </Form>
         </Col>
-        <Col md={6} className="mt-5 shallow">
+        <Col md={6} className="mt-5 shallow text-left">
           <MarkdownView description={description} />
         </Col>
       </Row>

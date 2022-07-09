@@ -51,7 +51,10 @@ export const App = () => {
           <NavbarComponent />
           <Posts />
         </Route>
-        <Route path="/post/:postId" component={() => <SeePost />} />
+        <Route path="/post/:postId">
+          <NavbarComponent />
+          <SeePost />
+        </Route>
         <Route path="/admin" component={() => <Admin />} />
       </Switch>
     </div>

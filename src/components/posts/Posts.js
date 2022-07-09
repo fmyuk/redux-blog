@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import { shallowEqual, useSelector } from "react-redux";
 import PostCard from "../postcard/PostCard";
 
@@ -21,14 +21,14 @@ const Posts = () => {
           </Col>
         </Col>
       </Row>
-      <Row className="mt-2 mb-5">
+      <Row className="my-5 px-5 gap-2">
         {postLoading ? (
           <h1 className="my-5 text-center">Loading...</h1>
         ) : (
           posts.map((pst, index) => (
-            <Col md={12} key={index}>
+            <Card className="col-md-5 mx-auto px-0" key={index}>
               <PostCard pst={pst} index={index} />
-            </Col>
+            </Card>
           ))
         )}
       </Row>

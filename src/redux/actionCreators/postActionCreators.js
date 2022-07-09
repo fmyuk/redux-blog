@@ -74,7 +74,7 @@ export const doPost = (data, image, setProgress) => dispatch => {
 export const fetchPosts = () => dispatch => {
   dispatch(setLoading(true));
 
-  firestore.collection("posts").get().then(posts => {
+  firestore.collection("posts").orderBy("createdDate", "desc").get().then(posts => {
     const allPosts = [];
 
     posts.forEach(post => {

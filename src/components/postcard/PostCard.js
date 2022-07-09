@@ -12,8 +12,12 @@ const PostCard = ({ pst, index }) => {
   const history = useHistory();
 
   return (
-    <Card className="mx-auto px-0 mb-3" key={index}>
-      <Card.Img src={pst.postData.image} alt={pst.postData.title} />
+    <>
+      <Card.Img 
+        style={{ height: "650", width: "20%" }}
+        src={pst.postData.image}
+        alt={pst.postData.title}
+      />
       <Card.Body>
         <Card.Title>
           {pst.postData.title}
@@ -29,7 +33,7 @@ const PostCard = ({ pst, index }) => {
           type="button"
           variant="primary"
           bg="primary"
-          className="form-control mb-2 my42"
+          className="form-control mb-2 my-2"
           onClick={() => history.push(`/post/${pst.postId}`)}
         >
           Display Post
@@ -46,7 +50,7 @@ const PostCard = ({ pst, index }) => {
           </Button>
         }
       </Card.Footer>
-    </Card>
+    </>
   );
 };
 

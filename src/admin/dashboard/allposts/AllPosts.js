@@ -31,7 +31,11 @@ const AllPosts = () => {
             ? <h1 className="text-center my-5">No Posts Found.</h1>
             : myPosts.map((pst, index) => (
               <Card className="col-md-5 mx-auto px-0" key={index}>
-                <Card.Img src={pst.postData.image} alt={pst.postData.title} />
+                <Card.Img
+                  style={{ height: "650", width: "20%" }}
+                  src={pst.postData.image}
+                  alt={pst.postData.title}
+                />
                 <Card.Body>
                   <Card.Title>
                     {pst.postData.title}
@@ -39,7 +43,7 @@ const AllPosts = () => {
                 </Card.Body>
                 <Card.Footer className="bg-white">
                   <div className="d-flex w-100 px-5 py-2 align-items-center justify-content-between">
-                    <p>Likes 0</p>
+                    <p>Likes</p>
                     <p className="py-1 px-2 bg-dark text-white">
                       {pst.postData.author}
                     </p>
