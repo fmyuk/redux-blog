@@ -4,6 +4,7 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { removeComment } from "../../redux/actionCreators/postActionCreators";
 import CommentForm from "../commentform/CommentForm";
+import MarkdownView from "../markdownview/MarkdownView";
 import ReplyForm from "../replyform/ReplyForm";
 import ShowReplies from "../showreplies/ShowReplies";
 
@@ -49,7 +50,7 @@ const SeePost = () => {
       <Row>
         <Col md={12}>
           <Image
-            style={{ height: "650", width: "70%" }}
+            style={{ height: "650", width: "10%" }}
             src={currentPost.postData.image}
             alt={currentPost.postData.title}
           />
@@ -68,12 +69,11 @@ const SeePost = () => {
         </Col>
       </Row>
       <div className="d-flex">
-        <p
+        <div
           className="card-text text-wrap overflow-hidden px-5 py-0 w-50 text-justify"
-          style={{ wordWrap: "wrap", wordBreak: "break-word" }}
         >
-          {currentPost.postData.description}
-        </p>
+          <MarkdownView description={currentPost.postData.description} />
+        </div>
         <div className="col-md-6">
           <CommentForm currentPost={currentPost} />
           <div className="col-md-12 pe-5 mt-5">

@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { updatePostData } from "../../../redux/actionCreators/postActionCreators";
+import MarkdownEditor from "../../../components/markdown/MarkdownEditor";
+import MarkdownView from "../../../components/markdownview/MarkdownView";
 
 const EditPost = () => {
   const { postId } = useParams();
@@ -48,17 +50,14 @@ const EditPost = () => {
               className="mt-5 mb-3"
               onChange={(e) => setTitle(e.target.value)}
             />
-            <textarea
-              placeholder="Description"
-              value={description}
-              className="form-control"
-              rows="10"
-              onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
+            <MarkdownEditor description={description} setDescription={setDescription} />
             <Button type="submit" className="mt-4 form-control" variant="dark">
               Update Post
             </Button>
           </Form>
+        </Col>
+        <Col md={6} className="mt-5 shallow">
+          <MarkdownView description={description} />
         </Col>
       </Row>
     </Container>

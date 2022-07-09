@@ -18,11 +18,6 @@ const PostCard = ({ pst, index }) => {
         <Card.Title>
           {pst.postData.title}
         </Card.Title>
-        <Card.Subtitle>
-          {pst.postData.description.length > 100
-            ? `${pst.postData.description.slice(0, 100)}...`
-            : pst.postData.description}
-        </Card.Subtitle>
       </Card.Body>
       <Card.Footer className="bg-white">
         <div className="d-flex w-100 px-5 py-2 align-items-center justify-content-between">
@@ -37,7 +32,7 @@ const PostCard = ({ pst, index }) => {
           className="form-control mb-2 my42"
           onClick={() => history.push(`/post/${pst.postId}`)}
         >
-          See Post
+          Display Post
         </Button>
         {isLoggedIn && pst.postData.createdBy === user_id &&
           <Button

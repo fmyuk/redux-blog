@@ -3,6 +3,8 @@ import { Button, Col, Container, Form, Row, ProgressBar } from "react-bootstrap"
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import MarkdownEditor from "../../../components/markdown/MarkdownEditor";
+import MarkdownView from "../../../components/markdownview/MarkdownView";
 import { doPost } from "../../../redux/actionCreators/postActionCreators";
 
 const AddPost = () => {
@@ -64,7 +66,7 @@ const AddPost = () => {
         <Col md={12} className="mb-3">
           <h1 className="display-3 text-dark text-center">Add Post</h1>
         </Col>
-        <Col md={6} className="mx-auto shadow">
+        <Col md={6} className="shadow">
           {progress > 0 && progress < 100 ?
             <>
               <h1>Uploading Post {progress} %</h1>
@@ -95,14 +97,7 @@ const AddPost = () => {
                   />
                 </Form.Group>
                 <Form.Group controlId="desc" className="my-2">
-                  <textarea
-                    placeholder="Enter the description"
-                    name="desc"
-                    className="form-control"
-                    rows={5}
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                  ></textarea>
+                  <MarkdownEditor description={description} setDescription={setDescription} />
                 </Form.Group>
                 <Form.Group controlId="file" className="my-2">
                   <Form.Control
@@ -122,6 +117,9 @@ const AddPost = () => {
                 </Form.Group>
               </Form>
           }
+        </Col>
+        <Col md={6} className="shallow">
+          <MarkdownView description={description} />
         </Col>
       </Row>
     </Container>

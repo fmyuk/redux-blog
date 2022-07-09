@@ -36,11 +36,6 @@ const AllPosts = () => {
                   <Card.Title>
                     {pst.postData.title}
                   </Card.Title>
-                  <Card.Subtitle>
-                    {pst.postData.description.length > 100
-                      ? `${pst.postData.description.slice(0, 100)}...`
-                      : pst.postData.description}
-                  </Card.Subtitle>
                 </Card.Body>
                 <Card.Footer className="bg-white">
                   <div className="d-flex w-100 px-5 py-2 align-items-center justify-content-between">
@@ -56,7 +51,7 @@ const AllPosts = () => {
                     className="form-control my-2"
                     onClick={() => history.push(`/post/${pst.postId}`)}
                   >
-                    See Post
+                    Display Post
                   </Button>
                   <div className="d-flex w-100 px-5 mb-5 py-2 align-items-center justify-content-end">
                     <Button

@@ -10,7 +10,7 @@ const NavbarComponent = () => {
         to=""
         style={{ marginLeft: "5%" }}
       >
-        React + Redux Firebase Blog
+        Fumi Tech Blog
       </Navbar.Brand>
       <Nav className="ms-auto ml-5">
         <Nav.Item>
