@@ -24,7 +24,7 @@ const NavbarComponent = () => {
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link as={NavLink} to="/post/ST4OVZ4HajfM6EEgsbJb">
+          <Nav.Link as={NavLink} to="/post/SWzu0g2aD8mdzKhwYnbI">
             About me
           </Nav.Link>
         </Nav.Item>
