@@ -24,11 +24,6 @@ const PostCard = ({ pst, index }) => {
         </Card.Title>
       </Card.Body>
       <Card.Footer className="bg-white">
-        <div className="d-flex w-100 px-5 py-2 align-items-center justify-content-between">
-          <p className="py-1 px-2 bg-dark text-white">
-            {pst.postData.author}
-          </p>
-        </div>
         <Button
           type="button"
           variant="primary"

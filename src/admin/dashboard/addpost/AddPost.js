@@ -35,6 +35,7 @@ const AddPost = () => {
     if (image.size > 5242880) {
       return toast.info("Image should be less than or equal to 5 MB");
     }
+    
     const data = {
       title,
       author: user.displayName,
